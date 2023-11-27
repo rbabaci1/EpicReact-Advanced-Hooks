@@ -35,7 +35,6 @@ const useAsync = initialState => {
     ...initialState,
   })
 
-  // a memoized function
   const run = React.useCallback(promise => {
     if (!promise) {
       return
@@ -68,9 +67,7 @@ function PokemonInfo({pokemonName}) {
     if (!pokemonName) {
       return
     }
-    // 💰 note the absence of `await` here. We're literally passing the promise
-    // to `run` so `useAsync` can attach it's own `.then` handler on it to keep
-    // track of the state of the promise.
+
     const pokemonPromise = fetchPokemon(pokemonName)
     run(pokemonPromise)
   }, [pokemonName, run])
