@@ -6,17 +6,14 @@ import * as React from 'react'
 // 🐨 create  CountContext here with React.createContext
 const CountContext = React.createContext()
 
-const CountProvider = ({children}) => {
+const CountProvider = props => {
   const [count, setCount] = React.useState(0)
-
   const value = [count, setCount]
-
-  return <CountContext.Provider value={value}>{children}</CountContext.Provider>
+  return <CountContext.Provider value={value} {...props} />
 }
 
 function CountDisplay() {
   const [count] = React.useContext(CountContext)
-
   return <div>{`The current count is ${count}`}</div>
 }
 
